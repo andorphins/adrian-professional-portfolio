@@ -762,8 +762,6 @@ body {
     font-family: var(--font-sans);
 }
 
-/* Update nav links to include Experience */
-
 /* About Section */
 .about {
     padding: 96px 0;
@@ -986,7 +984,6 @@ body {
     --accent-inverse: #0a0a0a;
 }
 
-/* Update body to use semantic colors */
 body {
     font-family: var(--font-mono);
     background-color: var(--bg-primary);
@@ -1336,4 +1333,5 @@ body {
 
 .footer-container {
     color: var(--text-muted);
+
 }

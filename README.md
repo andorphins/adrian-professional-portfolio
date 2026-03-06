@@ -24,4 +24,4 @@ This project was built as a professional practice exercise to demonstrate modern
 3. Direct deployment to a production environment.
 
 ---
-*Developed by Andrei Villacorta — 2026*
+*Developed by Andorphins — 2026*

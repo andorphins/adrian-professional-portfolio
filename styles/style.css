@@ -246,7 +246,9 @@ body {
 }
 
 .text-muted {
-    color: var(--gray-200);
+    background-color: var(--black);
+    color: var(--white);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .divider {
@@ -984,6 +986,11 @@ body {
     --accent-inverse: #0a0a0a;
 }
 
+[data-theme="dark"] .text-muted {
+    background-color: var(--white);
+    color: var(--black);
+}
+
 body {
     font-family: var(--font-mono);
     background-color: var(--bg-primary);
@@ -1076,10 +1083,6 @@ body {
 
 .mobile-menu a:hover {
     color: var(--text-primary);
-}
-
-.text-muted {
-    color: var(--text-muted);
 }
 
 .divider {

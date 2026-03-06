@@ -480,6 +480,54 @@
             <span class="footer-code">const andorphins = "building";</span>
         </div>
     </footer>
+    
+<div class="modal-overlay" id="certModal">
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-org" id="modalOrg">Organization</div>
+                <span class="modal-level" id="modalLevel">Level</span>
+            </div>
+            
+            <h2 class="modal-title" id="modalTitle">Certificate Title</h2>
+            
+            <div class="modal-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Issued</span>
+                    <span class="meta-value" id="modalDate">Date</span>
+                </div>
+                <div class="meta-item" id="modalIdContainer">
+                    <span class="meta-label">Credential ID</span>
+                    <span class="meta-value" id="modalId">ID</span>
+                </div>
+                <div class="meta-item" id="modalExpiryContainer">
+                    <span class="meta-label">Valid Until</span>
+                    <span class="meta-value" id="modalExpiry">Expiry</span>
+                </div>
+            </div>
+            
+            <div class="modal-section">
+                <h3>Overview</h3>
+                <p id="modalOverview">Description goes here...</p>
+            </div>
+            
+            <div class="modal-section" id="modalSkillsSection">
+                <h3>Key Skills</h3>
+                <ul class="skills-list" id="modalSkills"></ul>
+            </div>
+            
+            <div class="modal-section" id="modalTopicsSection">
+                <h3>Topics Covered</h3>
+                <div class="topics-grid" id="modalTopics"></div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="modal-btn secondary" id="modalCloseBtn">Close</button>
+                <a href="#" class="modal-btn primary" id="modalVerify" target="_blank">Verify Credential</a>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>

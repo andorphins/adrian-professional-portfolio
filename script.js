@@ -343,7 +343,7 @@ window.addEventListener('scroll', () => {
 // Initialize certificate cards on DOM load
 document.addEventListener('DOMContentLoaded', initializeCertCards);
 
-// Terminal Boot Sequence
+// Terminal
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('terminalOverlay');
     if (!overlay || sessionStorage.getItem('seenWelcome')) {
@@ -362,17 +362,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.getElementById('cursor');
 
     const addLine = (text, type = 'info', delay = 0) => {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                const line = document.createElement('div');
-                line.className = `boot-line status-${type}`;
-                line.textContent = text;
-                bootSequence.appendChild(line);
-                line.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                resolve();
-            }, delay);
-        });
-    };
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const line = document.createElement('div');
+            line.className = `boot-line status-${type}`;
+            line.textContent = text;
+            bootSequence.appendChild(line);
+            const terminalBody = document.querySelector('.terminal-body');
+            if (terminalBody) {
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+            resolve();
+        }, delay);
+    });
+};
 
     const typeCommand = async (text, speed = 30) => {
         cmdLine.classList.remove('hidden');
@@ -480,15 +483,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         await sleep(100);
         finalMsg.classList.add('show');
-        finalMsg.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        const terminalBody = document.querySelector('.terminal-body');
+        if (terminalBody) {
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
 
-        // Exit
+        // Exit with blur fade
         await sleep(2800);
-        overlay.classList.add('exit');
+        overlay.classList.add('exit-blur');
         document.body.style.overflow = '';
         sessionStorage.setItem('seenWelcome', 'true');
-        
-        setTimeout(() => overlay.remove(), 800);
+
+        setTimeout(() => overlay.remove(), 1200);
     };
 
     runBootSequence();

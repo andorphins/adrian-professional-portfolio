@@ -1736,10 +1736,13 @@ body {
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-.terminal-overlay.exit {
+.terminal-overlay.exit-blur {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    filter: blur(8px);
+    transform: scale(1.02);
+    transition: opacity 1.2s ease, visibility 1.2s ease, filter 1.2s ease, transform 1.2s ease;
 }
 
 .terminal-window {
@@ -1788,6 +1791,7 @@ body {
     min-height: 420px;
     max-height: 60vh;
     overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 .boot-line {

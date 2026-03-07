@@ -1,27 +1,52 @@
 # Adrian Villacorta | Professional Portfolio
 
-A custom-designed professional showcase developed for Adrian Villacorta, focusing on responsive design and optimized performance.
+A custom-built portfolio site developed for Adrian Villacorta, emphasizing clean design, responsive layouts, and production-ready deployment workflows.
 
-## 🚀 Live Demo
-**https://adrian-professional-portfolio.netlify.app/**
+## Live Demo
 
-## ✨ Key Features
-* **Professional Showcase:** Designed to highlight career milestones and technical expertise.
-* **Responsive UI:** Fully optimized for seamless viewing across mobile, tablet, and desktop devices.
-* **Optimized Performance:** Fast-loading assets and clean code structure for a smooth user experience.
-* **Netlify Deployment:** Hosted on a global CDN for maximum uptime and speed.
+Netlify: https://adrian-professional-portfolio.netlify.app/
+Vercel: https://adrian-professional-portfolio.vercel.app/
 
-## 🛠️ Tech Stack
-* **HTML5:** Semantic structure for better SEO.
-* **CSS3:** Custom styling and responsive layouts.
-* **JavaScript:** Interactive elements and smooth transitions.
-* **Netlify:** Used for hosting and continuous deployment.
+## Core Features
 
-## 📁 Project Overview
-This project was built as a professional practice exercise to demonstrate modern web development workflows, including:
-1. Version control via GitHub.
-2. Asset optimization (images like `UPHSD.png` and `WSI.png`).
-3. Direct deployment to a production environment.
+Professional Showcase
+Structured presentation of career milestones, technical proficiencies, and project history. Designed to communicate value clearly to potential employers or collaborators.
+
+Responsive Design
+Fluid layouts adapt to mobile, tablet, and desktop viewports without loss of functionality or readability.
+
+Performance Optimization
+Compressed assets, minimal dependencies, and semantic markup ensure fast load times and low latency across global CDN nodes.
+
+Dual-Platform Deployment
+Hosted on both Netlify and Vercel to demonstrate familiarity with multiple deployment pipelines and edge network configurations.
+
+## Technical Stack
+
+HTML5
+Semantic markup for accessibility compliance and search engine visibility.
+
+CSS3
+Custom styling with Flexbox and Grid layouts; no external frameworks to minimize bundle size.
+
+JavaScript
+Vanilla JS for interactive components and DOM manipulation without framework overhead.
+
+Netlify / Vercel
+Continuous deployment via Git integration; automated builds on commit.
+
+## Development Workflow
+
+This project was built to demonstrate modern frontend practices:
+
+Version Control: Source code managed through Git with structured commit history.
+
+Asset Pipeline: Image optimization for web delivery (UPHSD.png, WSI.png).
+
+CI/CD: Automated deployment pipelines configured for both hosting platforms.
+
+Production Hardening: DNS configuration, HTTPS enforcement, and cache headers implemented.
 
 ---
-*Developed by Andorphins — 2026*
+
+Developed by Andorphins — 2026

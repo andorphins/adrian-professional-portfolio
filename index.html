@@ -8,71 +8,81 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="img/favicon/AV.png">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<div class="terminal-overlay" id="terminalOverlay">
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-btn close"></div>
-            <div class="terminal-btn minimize"></div>
-            <div class="terminal-btn maximize"></div>
-            <span class="terminal-title">portfolio-cli.exe</span>
-        </div>
-        <div class="terminal-body" id="terminalBody">
-            <div class="boot-sequence" id="bootSequence"></div>
-            <div class="command-line hidden" id="cmdLine">
-                <span class="prompt">C:\Users\visitor\portfolio></span>
-                <span class="command" id="typedCmd"></span>
-                <span class="cursor" id="cursor">_</span>
-            </div>
-        </div>
-    </div>
-</div>
-
 <body>
-    <!-- Navigation -->
-<nav class="nav">
-    <div class="container nav-container">
-        <a href="#top" class="logo">aivblack</a>
-        
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="#work" class="nav-link">Work</a>
-                <a href="#certificates" class="nav-link">Certificates</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
+    <!-- Terminal Overlay -->
+    <div class="terminal-overlay" id="terminalOverlay">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-btn close"></div>
+                <div class="terminal-btn minimize"></div>
+                <div class="terminal-btn maximize"></div>
+                <span class="terminal-title">portfolio-cli.exe</span>
+                <span class="terminal-skip">Press ESC or click to skip</span>
             </div>
-            
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3"/>
-                    <line x1="12" y1="21" x2="12" y2="23"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line x1="1" y1="12" x2="3" y2="12"/>
-                    <line x1="21" y1="12" x2="23" y2="12"/>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                </svg>
-                <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-            </button>
-            
-            <button class="menu-btn" id="menuBtn">Menu</button>
+            <div class="terminal-body" id="terminalBody">
+                <div class="boot-sequence" id="bootSequence"></div>
+                <div class="command-line hidden" id="cmdLine">
+                    <span class="prompt">C:\Users\visitor\portfolio></span>
+                    <span class="command" id="typedCmd"></span>
+                    <span class="cursor" id="cursor">_</span>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#work">Work</a>
-        <a href="#certificates">Certificates</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </div>
-</nav>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="#top" class="logo">aivblack</a>
+            
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#work" class="nav-link">Work</a>
+                    <a href="#certificates" class="nav-link">Certificates</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                
+                <button class="menu-btn" id="menuBtn">Menu</button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#work">Work</a>
+            <a href="#certificates">Certificates</a>
+            <a href="#experience">Experience</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
     <!-- Hero -->
     <section id="top" class="hero">
@@ -107,9 +117,13 @@
 
             <div class="projects">
                 <!-- Sort.AI -->
-                <article class="project">
+                <article class="project" data-project="sort-ai">
                     <div class="project-header">
-                        <h3>Sort.AI</h3>
+                        <h3>
+                            <a href="https://github.com/aivblack/sort-ai" target="_blank" class="project-link">
+                                Sort.AI <span class="link-arrow">↗</span>
+                            </a>
+                        </h3>
                         <span class="role">Lead Developer</span>
                     </div>
                     <p class="project-desc">
@@ -125,9 +139,13 @@
                 </article>
 
                 <!-- Magnify -->
-                <article class="project">
+                <article class="project" data-project="magnify">
                     <div class="project-header">
-                        <h3>Magnify</h3>
+                        <h3>
+                            <a href="https://github.com/aivblack/magnify" target="_blank" class="project-link">
+                                Magnify <span class="link-arrow">↗</span>
+                            </a>
+                        </h3>
                         <span class="role">Lead Systems Engineer</span>
                     </div>
                     <p class="project-desc">
@@ -143,9 +161,13 @@
                 </article>
 
                 <!-- Fetcher -->
-                <article class="project">
+                <article class="project" data-project="fetcher">
                     <div class="project-header">
-                        <h3>Fetcher</h3>
+                        <h3>
+                            <a href="https://github.com/aivblack/fetcher" target="_blank" class="project-link">
+                                Fetcher <span class="link-arrow">↗</span>
+                            </a>
+                        </h3>
                         <span class="role">AI-Enhanced Media Pipeline</span>
                     </div>
                     <p class="project-desc">
@@ -173,7 +195,7 @@
 
             <div class="cert-grid">
                 <!-- Hexnode Specialist -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="hexnode-android-specialist">
                     <div class="cert-header">
                         <div class="cert-org">Hexnode</div>
                         <span class="cert-level specialist">Specialist</span>
@@ -186,7 +208,7 @@
                 </div>
 
                 <!-- Hexnode Professional macOS -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="hexnode-macos-professional">
                     <div class="cert-header">
                         <div class="cert-org">Hexnode</div>
                         <span class="cert-level professional">Professional</span>
@@ -200,7 +222,7 @@
                 </div>
 
                 <!-- Hexnode Professional iOS -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="hexnode-ios-professional">
                     <div class="cert-header">
                         <div class="cert-org">Hexnode</div>
                         <span class="cert-level professional">Professional</span>
@@ -213,7 +235,7 @@
                 </div>
 
                 <!-- Hexnode Professional Windows -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="hexnode-windows-professional">
                     <div class="cert-header">
                         <div class="cert-org">Hexnode</div>
                         <span class="cert-level professional">Professional</span>
@@ -226,7 +248,7 @@
                 </div>
 
                 <!-- Hexnode Professional Android -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="hexnode-android-professional">
                     <div class="cert-header">
                         <div class="cert-org">Hexnode</div>
                         <span class="cert-level professional">Professional</span>
@@ -240,7 +262,7 @@
                 </div>
 
                 <!-- Cloudwise IT Operations -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="cloudwise-it-ops">
                     <div class="cert-header">
                         <div class="cert-org">Cloudwise</div>
                         <span class="cert-level engineer">Engineer</span>
@@ -253,7 +275,7 @@
                 </div>
 
                 <!-- Cloudwise IT Service -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="cloudwise-it-service">
                     <div class="cert-header">
                         <div class="cert-org">Cloudwise</div>
                         <span class="cert-level engineer">Engineer</span>
@@ -266,7 +288,7 @@
                 </div>
 
                 <!-- BMC Control-M Scheduler -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="bmc-control-m-scheduler">
                     <div class="cert-header">
                         <div class="cert-org">BMC Software</div>
                         <span class="cert-level professional">Professional</span>
@@ -279,7 +301,7 @@
                 </div>
 
                 <!-- BMC Control-M Administrator -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="bmc-control-m-admin">
                     <div class="cert-header">
                         <div class="cert-org">BMC Software</div>
                         <span class="cert-level professional">Professional</span>
@@ -292,7 +314,7 @@
                 </div>
 
                 <!-- BMC Control-M Consultant -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="bmc-control-m-consultant">
                     <div class="cert-header">
                         <div class="cert-org">BMC Software</div>
                         <span class="cert-level professional">Professional</span>
@@ -304,7 +326,7 @@
                 </div>
 
                 <!-- Sophos Technician -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="sophos-technician">
                     <div class="cert-header">
                         <div class="cert-org">Sophos</div>
                         <span class="cert-level technician">Technician</span>
@@ -316,7 +338,7 @@
                 </div>
 
                 <!-- Sophos Engineer -->
-                <div class="cert-card">
+                <div class="cert-card" data-cert-key="sophos-engineer">
                     <div class="cert-header">
                         <div class="cert-org">Sophos</div>
                         <span class="cert-level engineer">Engineer</span>
@@ -330,7 +352,7 @@
         </div>
     </section>
 
-<!-- Experience Section -->
+    <!-- Experience Section -->
     <section id="experience" class="experience">
         <div class="container">
             <header class="section-header">
@@ -369,20 +391,20 @@
                             <h3>Associate Technical Support Engineer L1</h3>
                         </div>
                         <div class="role-meta">
-                            <span class="role-date">May 2024 — May 2025 · 1 year 11 months</span>
+                            <span class="role-date">May 2024 — May 2025 · 1 year</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Associate L1 -->
-             <div class="timeline-item">
+                <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="role-header">
                             <h3>Technical Support Engineer</h3>
                         </div>
                         <div class="role-meta">
-                            <span class="role-date">May 2022 — May 2024 · 3 years 11 months</span>
+                            <span class="role-date">May 2022 — May 2024 · 2 years</span>
                         </div>
                     </div>
                 </div>
@@ -413,20 +435,32 @@
         </div>
     </section>
 
-    <!-- About -->
+    <!-- About / Now Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-grid">
                 <div class="about-header">
-                    <h2>About</h2>
+                    <h2>Now</h2>
+                    <span class="last-updated">Updated March 2025</span>
                     <div class="divider-sm"></div>
                 </div>
                 <div class="about-content">
-                    <p class="lead">
-                        Solutions Engineer specializing in the intersection of Cyber Security, Workload Automation, and Endpoint Management. I design and implement scalable architectures that fortify digital defenses while streamlining IT operations.
-                    </p>
-                    <p>
-                        By bridging the gap between complex technical requirements and business objectives, I help organizations reduce manual overhead and mitigate risk across hybrid environments.
+                    <div class="now-item">
+                        <span class="now-label">Building</span>
+                        <p>Automated security pipelines for enterprise endpoints using Python and Rust</p>
+                    </div>
+                    <div class="now-item">
+                        <span class="now-label">Learning</span>
+                        <p>eBPF for Linux tracing and systems programming</p>
+                    </div>
+                    <div class="now-item">
+                        <span class="now-label">Reading</span>
+                        <p>"Designing Data-Intensive Applications" by Martin Kleppmann</p>
+                    </div>
+                    <div class="now-item">
+                        <span class="now-label">Based</span>
+                        <p>Metro Manila, Philippines</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -441,7 +475,7 @@
             </header>
 
             <div class="contact-grid">
-                <a href="mailto:Adrian@example.com" class="contact-item">
+                <a href="#" class="contact-item" id="emailLink" data-user="aivillacorta" data-domain="gmail.com">
                     <div class="contact-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -450,11 +484,11 @@
                     </div>
                     <div>
                         <span class="contact-label">Email</span>
-                        <span class="contact-value">aivillacorta.xxxxx@gmail.com</span>
+                        <span class="contact-value" id="emailDisplay">Click to reveal</span>
                     </div>
                 </a>
 
-                <a href="tel:+1234567890" class="contact-item">
+                <a href="#" class="contact-item" id="phoneLink" data-country="63" data-number="993948xxxx">
                     <div class="contact-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -462,7 +496,7 @@
                     </div>  
                     <div>
                         <span class="contact-label">Phone</span>
-                        <span class="contact-value">+63 993 948 xxxx</span>
+                        <span class="contact-value" id="phoneDisplay">Click to reveal</span>
                     </div>
                 </a>
 
@@ -497,60 +531,54 @@
     <footer class="footer">
         <div class="container footer-container">
             <span>© 2026 Adrian Villacorta</span>
-            <span class="footer-code">const andorphins = "building";</span>
+            <span class="footer-code" id="footerCode" title="Click to cycle status">const andorphins = "building";</span>
         </div>
     </footer>
     
-<div class="modal-overlay" id="certModal">
-    <div class="modal-wrapper">
-        <div class="modal-header-static">
-            
-            <div class="modal-header-top">
-                <div class="modal-org" id="modalOrg">Organization</div>
-                <span class="modal-level" id="modalLevel">Level</span>
-            </div>
-
-            <h2 class="modal-title" id="modalTitle">Certificate Title</h2>
-            
-            <div class="modal-meta">
-                <div class="meta-item">
-                    <span class="meta-label">Issued</span>
-                    <span class="meta-value" id="modalDate">Date</span>
+    <!-- Certificate Modal -->
+    <div class="modal-overlay" id="certModal">
+        <div class="modal-wrapper">
+            <div class="modal-header-static">
+                <div class="modal-header-top">
+                    <div class="modal-org" id="modalOrg">Organization</div>
+                    <span class="modal-level" id="modalLevel">Level</span>
                 </div>
-                <div class="meta-item" id="modalIdContainer">
-                    <span class="meta-label">Credential ID</span>
-                    <span class="meta-value" id="modalId">ID</span>
+                <h2 class="modal-title" id="modalTitle">Certificate Title</h2>
+                <div class="modal-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Issued</span>
+                        <span class="meta-value" id="modalDate">Date</span>
+                    </div>
+                    <div class="meta-item" id="modalIdContainer">
+                        <span class="meta-label">Credential ID</span>
+                        <span class="meta-value" id="modalId">ID</span>
+                    </div>
+                    <div class="meta-item" id="modalExpiryContainer">
+                        <span class="meta-label">Valid Until</span>
+                        <span class="meta-value" id="modalExpiry">Expiry</span>
+                    </div>
                 </div>
-                <div class="meta-item" id="modalExpiryContainer">
-                    <span class="meta-label">Valid Until</span>
-                    <span class="meta-value" id="modalExpiry">Expiry</span>
+            </div>
+            <div class="modal-scrollable">
+                <div class="modal-section">
+                    <h3>Overview</h3>
+                    <p id="modalOverview">Description goes here...</p>
+                </div>
+                <div class="modal-section" id="modalSkillsSection">
+                    <h3>Key Skills</h3>
+                    <ul class="skills-list" id="modalSkills"></ul>
+                </div>
+                <div class="modal-section" id="modalTopicsSection">
+                    <h3>Topics Covered</h3>
+                    <div class="topics-grid" id="modalTopics"></div>
                 </div>
             </div>
-        </div>
-
-        <div class="modal-scrollable">
-            <div class="modal-section">
-                <h3>Overview</h3>
-                <p id="modalOverview">Description goes here...</p>
+            <div class="modal-footer-static">
+                <button class="modal-btn secondary" id="modalCloseBtn">Close</button>
+                <a href="#" class="modal-btn primary" id="modalVerify" target="_blank">Verify Credential</a>
             </div>
-            
-            <div class="modal-section" id="modalSkillsSection">
-                <h3>Key Skills</h3>
-                <ul class="skills-list" id="modalSkills"></ul>
-            </div>
-            
-            <div class="modal-section" id="modalTopicsSection">
-                <h3>Topics Covered</h3>
-                <div class="topics-grid" id="modalTopics"></div>
-            </div>
-        </div>
-
-        <div class="modal-footer-static">
-            <button class="modal-btn secondary" id="modalCloseBtn">Close</button>
-            <a href="#" class="modal-btn primary" id="modalVerify" target="_blank">Verify Credential</a>
         </div>
     </div>
-</div>
 
     <script src="scripts/script.js"></script>
 </body>

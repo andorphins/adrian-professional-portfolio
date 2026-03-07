@@ -150,9 +150,6 @@ const certificateData = {
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const html = document.documentElement;
 
-const currentTheme = localStorage.getItem('theme') || 'light';
-html.setAttribute('data-theme', currentTheme);
-
 themeToggles.forEach(toggle => {
     toggle.addEventListener('click', () => {
         const currentTheme = html.getAttribute('data-theme');
@@ -168,14 +165,14 @@ const mobileMenu = document.getElementById('mobileMenu');
 
 if (menuBtn && mobileMenu) {
     menuBtn.addEventListener('click', () => {
-        const isHidden = mobileMenu.style.display === 'none' || !mobileMenu.style.display;
-        mobileMenu.style.display = isHidden ? 'flex' : 'none';
-        mobileMenu.style.flexDirection = 'column';
+        mobileMenu.classList.toggle('active');
+        menuBtn.textContent = mobileMenu.classList.contains('active') ? 'Close' : 'Menu';
     });
 
     document.querySelectorAll('.mobile-menu a').forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenu.style.display = 'none';
+            mobileMenu.classList.remove('active');
+            menuBtn.textContent = 'Menu';
         });
     });
 }
@@ -249,45 +246,95 @@ function closeModal() {
 }
 
 // Close modal events
-modalCloseBtn.addEventListener('click', closeModal);
+if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', closeModal);
+}
 
 // Close on overlay click
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModal();
-    }
-});
+if (modal) {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+}
 
 // Close on escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
+    if (e.key === 'Escape') {
+        if (modal && modal.classList.contains('active')) {
+            closeModal();
+        }
     }
 });
 
 // Add click handlers to certificate cards
 function initializeCertCards() {
-    const certCards = document.querySelectorAll('.cert-card');
+    const certCards = document.querySelectorAll('.cert-card[data-cert-key]');
     
-    const certKeys = [
-        'hexnode-android-specialist',
-        'hexnode-macos-professional',
-        'hexnode-ios-professional',
-        'hexnode-windows-professional',
-        'hexnode-android-professional',
-        'cloudwise-it-ops',
-        'cloudwise-it-service',
-        'bmc-control-m-scheduler',
-        'bmc-control-m-admin',
-        'bmc-control-m-consultant',
-        'sophos-technician',
-        'sophos-engineer'
-    ];
-    
-    certCards.forEach((card, index) => {
-        if (certKeys[index]) {
-            card.addEventListener('click', () => openModal(certKeys[index]));
+    certCards.forEach((card) => {
+        const certKey = card.getAttribute('data-cert-key');
+        if (certKey && certificateData[certKey]) {
+            card.addEventListener('click', () => openModal(certKey));
         }
+    });
+}
+
+// Email reveal functionality
+const emailLink = document.getElementById('emailLink');
+const emailDisplay = document.getElementById('emailDisplay');
+
+if (emailLink && emailDisplay) {
+    emailLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const user = emailLink.getAttribute('data-user');
+        const domain = emailLink.getAttribute('data-domain');
+        const email = `${user}@${domain}`;
+        
+        if (emailDisplay.textContent === 'Click to reveal') {
+            emailDisplay.textContent = email;
+            emailDisplay.style.fontFamily = 'var(--font-mono)';
+        } else {
+            window.location.href = `mailto:${email}`;
+        }
+    });
+}
+
+// Phone reveal functionality
+const phoneLink = document.getElementById('phoneLink');
+const phoneDisplay = document.getElementById('phoneDisplay');
+
+if (phoneLink && phoneDisplay) {
+    phoneLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const country = phoneLink.getAttribute('data-country');
+        const number = phoneLink.getAttribute('data-number');
+        const phone = `+${country} ${number}`;
+        
+        if (phoneDisplay.textContent === 'Click to reveal') {
+            phoneDisplay.textContent = phone;
+            phoneDisplay.style.fontFamily = 'var(--font-mono)';
+        } else {
+            window.location.href = `tel:${country}${number.replace(/\s/g, '')}`;
+        }
+    });
+}
+
+// Footer easter egg
+const footerCode = document.getElementById('footerCode');
+const states = ['"building"', '"compiling"', '"deploying"', '"debugging"', '"optimizing"', '"learning"'];
+let stateIndex = 0;
+
+if (footerCode) {
+    footerCode.addEventListener('click', () => {
+        stateIndex = (stateIndex + 1) % states.length;
+        footerCode.textContent = `const andorphins = ${states[stateIndex]};`;
+        
+        // Visual feedback
+        footerCode.style.color = 'var(--accent)';
+        setTimeout(() => {
+            footerCode.style.color = '';
+        }, 200);
     });
 }
 
@@ -331,23 +378,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Subtle parallax on hero
+// Subtle parallax on hero (throttled)
+let ticking = false;
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle && scrolled < window.innerHeight) {
-        heroTitle.style.transform = `translateY(${scrolled * 0.05}px)`;
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle && scrolled < window.innerHeight) {
+                heroTitle.style.transform = `translateY(${scrolled * 0.05}px)`;
+            }
+            ticking = false;
+        });
+        ticking = true;
     }
 });
 
-// Initialize certificate cards on DOM load
-document.addEventListener('DOMContentLoaded', initializeCertCards);
+// Initialize certificate cards
+initializeCertCards();
 
-// Terminal
+// Terminal Boot Sequence
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('terminalOverlay');
     if (!overlay || sessionStorage.getItem('seenWelcome')) {
-        overlay?.remove();
+        if (overlay) overlay.remove();
+        document.body.style.overflow = '';
         return;
     }
 
@@ -361,25 +416,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const typedCmd = document.getElementById('typedCmd');
     const cursor = document.getElementById('cursor');
 
-    const addLine = (text, type = 'info', delay = 0) => {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            const line = document.createElement('div');
-            line.className = `boot-line status-${type}`;
-            line.textContent = text;
-            bootSequence.appendChild(line);
-            const terminalBody = document.querySelector('.terminal-body');
-            if (terminalBody) {
-                terminalBody.scrollTop = terminalBody.scrollHeight;
-            }
-            resolve();
-        }, delay);
+    let isSkipping = false;
+
+    const skipTerminal = () => {
+        if (isSkipping) return;
+        isSkipping = true;
+        overlay.classList.add('exit-blur');
+        document.body.style.overflow = '';
+        sessionStorage.setItem('seenWelcome', 'true');
+        setTimeout(() => overlay.remove(), 1200);
+    };
+
+    // Click to skip
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay || e.target.closest('.terminal-window')) {
+            skipTerminal();
+        }
     });
-};
+
+    // Escape key to skip
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sessionStorage.getItem('seenWelcome')) {
+            skipTerminal();
+        }
+    });
+
+    const addLine = (text, type = 'info', delay = 0) => {
+        return new Promise(resolve => {
+            if (isSkipping) {
+                resolve();
+                return;
+            }
+            setTimeout(() => {
+                if (isSkipping) {
+                    resolve();
+                    return;
+                }
+                const line = document.createElement('div');
+                line.className = `boot-line status-${type}`;
+                line.textContent = text;
+                bootSequence.appendChild(line);
+                const terminalBody = document.querySelector('.terminal-body');
+                if (terminalBody) {
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
+                }
+                resolve();
+            }, delay);
+        });
+    };
 
     const typeCommand = async (text, speed = 30) => {
+        if (isSkipping) return;
         cmdLine.classList.remove('hidden');
         for (let i = 0; i < text.length; i++) {
+            if (isSkipping) return;
             typedCmd.textContent += text[i];
             await sleep(speed + Math.random() * 20);
         }
@@ -467,9 +557,10 @@ document.addEventListener('DOMContentLoaded', () => {
         await addLine('', 'info', 0);
         await typeCommand('npm run start', 40);
         await sleep(400);
-        cursor.classList.add('hidden');
+        if (cursor) cursor.classList.add('hidden');
 
         // Final message
+        if (isSkipping) return;
         const finalMsg = document.createElement('div');
         finalMsg.className = 'final-message';
         finalMsg.innerHTML = `
@@ -490,11 +581,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Exit with blur fade
         await sleep(2800);
-        overlay.classList.add('exit-blur');
-        document.body.style.overflow = '';
-        sessionStorage.setItem('seenWelcome', 'true');
-
-        setTimeout(() => overlay.remove(), 1200);
+        if (!isSkipping) {
+            skipTerminal();
+        }
     };
 
     runBootSequence();

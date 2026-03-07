@@ -134,7 +134,6 @@ body {
     padding: 0 24px;
 }
 
-/* Navigation */
 .nav {
     position: fixed;
     top: 0;
@@ -209,8 +208,6 @@ body {
 .nav-link:hover::after {
     width: 100%;
 }
-
-/* Theme toggle */
 .theme-toggle {
     background: none;
     border: none;
@@ -296,7 +293,6 @@ body {
     color: var(--text-primary);
 }
 
-/* Desktop */
 @media (min-width: 768px) {
     .nav-links {
         display: flex;
@@ -307,7 +303,6 @@ body {
     }
 }
 
-/* Hero */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -395,7 +390,6 @@ body {
     50% { transform: translateX(-50%) translateY(-8px); }
 }
 
-/* Work Section */
 .work {
     padding: 96px 0;
     background-color: var(--bg-secondary);
@@ -522,7 +516,7 @@ body {
     width: 100%;
 }
 
-/* Certificates Section */
+
 .certificates {
     padding: 96px 0;
     background-color: var(--bg-secondary);
@@ -667,14 +661,12 @@ body {
     margin-top: 8px;
 }
 
-/* Desktop: 2-column grid for certs */
 @media (min-width: 768px) {
     .cert-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Experience Section */
 .experience {
     padding: 96px 0;
     background-color: var(--bg-primary);
@@ -791,7 +783,6 @@ body {
     filter: grayscale(0%) contrast(100%) brightness(1);
 }
 
-/* Education Section */
 .education {
     padding: 64px 0;
     background-color: var(--bg-secondary);
@@ -869,7 +860,6 @@ body {
     margin-top: 4px;
 }
 
-/* Mobile adjustments */
 @media (max-width: 480px) {
     .section-header-with-logo {
         flex-direction: column;
@@ -893,7 +883,6 @@ body {
     }
 }
 
-/* About / Now Section */
 .about {
     padding: 96px 0;
     background-color: var(--bg-primary);
@@ -961,7 +950,7 @@ body {
     margin: 0;
 }
 
-/* Contact Section */
+
 .contact {
     padding: 96px 0;
     background-color: var(--bg-secondary);
@@ -1023,7 +1012,6 @@ body {
     color: var(--text-primary);
 }
 
-/* Footer */
 .footer {
     padding: 32px 0;
     background-color: var(--bg-primary);

@@ -281,10 +281,10 @@ const MobileMenuManager = {
   /**
    * Toggles mobile menu visibility
    */
- toggle() {
+  toggle() {
     const isActive = this.mobileMenu.classList.toggle('active');
     this.menuBtn.classList.toggle('active', isActive);
-},
+  },
 
   /**
    * Closes the mobile menu

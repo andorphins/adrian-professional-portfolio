@@ -1510,6 +1510,7 @@ body {
     border-radius: 50%;
     transition: transform 0.15s ease, filter 0.15s ease;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .terminal-btn:hover {
@@ -1522,27 +1523,53 @@ body {
 .terminal-btn.maximize { background: var(--terminal-btn-maximize); }
 
 .terminal-title {
-    margin-left: auto;
-    margin-right: auto;
     color: var(--terminal-text-muted);
     font-size: 11px;
     letter-spacing: 0.5px;
     font-weight: 500;
+    flex: 1;
+    text-align: center;
+    padding: 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .terminal-skip {
-    position: absolute;
-    right: 14px;
     color: var(--terminal-text-muted);
     font-size: 10px;
     opacity: 0.7;
     cursor: pointer;
     transition: opacity 0.2s ease;
     user-select: none;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .terminal-skip:hover {
     opacity: 1;
+}
+
+/* Mobile: hide skip text, keep it clean */
+@media (max-width: 480px) {
+    .terminal-skip {
+        display: none;
+    }
+    
+    .terminal-title {
+        font-size: 10px;
+    }
+}
+
+/* Tablet: smaller skip text */
+@media (min-width: 481px) and (max-width: 767px) {
+    .terminal-skip {
+        font-size: 9px;
+    }
+    
+    .terminal-title {
+        font-size: 10px;
+    }
 }
 
 /* ============================================================================

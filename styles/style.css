@@ -359,6 +359,10 @@ body {
     transition: transform 0.1s ease-out;
 }
 
+.hero-align {
+    padding-left: 7px;
+}
+
 .text-muted {
     background-color: var(--accent);
     color: var(--accent-inverse);
